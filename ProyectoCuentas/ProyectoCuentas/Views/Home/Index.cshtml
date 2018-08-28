@@ -1,0 +1,138 @@
+﻿<head>
+    <style type="text/css">
+        #Text1 {
+            width: 236px;
+            margin-left: 0px;
+        }
+
+        #Text2 {
+            width: 212px;
+            margin-left: 6px;
+        }
+
+        #Password1 {
+            width: 214px;
+        }
+
+        #Text4 {
+            width: 238px;
+        }
+
+        #Text3 {
+            width: 228px;
+        }
+
+        #Text5 {
+            width: 212px;
+        }
+
+        #Button2 {
+            width: 77px;
+            margin-left: 28px;
+        }
+
+        #TextArea1 {
+            height: 123px;
+            width: 396px;
+        }
+    </style>
+</head>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Ingresar nuevo cliente</h2>
+        <p>
+            Nombre:
+            <input id="Text1" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </p>
+        <p>
+            Tipo id:
+            <select style="width: 212px; margin-left: 28px">
+                <option value="Cedula">Cédula de identidad</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="Residencia">Cédula de Residencia</option>
+                <option value="Otro">Otro</option>
+            </select>
+        <p>
+            Número id:
+            <input id="Text2" type="text" />
+        </p>
+        <p>
+            Contraseña:
+            <input id="Password1" type="password" />
+        </p>
+    </div>
+</div>
+<p>
+    <input id="Button1" type="button" value="Aceptar" />
+</p>
+<p>
+    &nbsp;
+</p>
+
+<h2>Editar cliente</h2>
+<p>
+    Id cliente:
+    <input id="Text3" type="text" />
+</p>
+<p>
+    Nombre:
+    <input id="Text4" type="text" aria-disabled="True" />
+</p>
+<p>
+    Tipo id:
+    <select style="width: 234px; margin-left: 7px" name="D1">
+        <option value="Cedula">Cédula de identidad</option>
+        <option value="Pasaporte">Pasaporte</option>
+        <option value="Residencia">Cédula de Residencia</option>
+        <option value="Otro">Otro</option>
+    </select>
+</p>
+<p>
+    Contraseña:
+    <input id="Text5" type="text" />
+</p>
+<p>
+    <input id="Button3" type="button" value="Buscar" /><input id="Button2" type="button" value="Guardar" />
+</p>
+<p>
+    &nbsp;
+</p>
+<h2>
+    Modificaciones
+</h2>
+
+
+<p>
+    Consultar modificaciones realizadas a los clientes
+</p>
+<p>
+    <textarea id="TextArea1" name="S1"></textarea>
+</p>
+<p>
+    <input id="Button4" type="button" value="Consultar" />
+</p>
+
+<h2>
+    Impersonar cliente
+</h2>
+
+
+
+
+<p>
+    Id cliente:
+    <input id="TextCliente" type="text" />
+
+</p>
+<p>
+    <input id="Button4" type="button" value="Aceptar" />
+</p>
+
+
+
