@@ -23,6 +23,7 @@ namespace ProyectoCuentas.Models
         public bool RememberMe { get; set; }
     }
 
+
     public class VerifyCodeViewModel
     {
         [Required]

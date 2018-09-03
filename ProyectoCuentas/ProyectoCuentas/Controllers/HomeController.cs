@@ -26,6 +26,12 @@ namespace ProyectoCuentas.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public ActionResult guardar()
+        {
+            return View("About");
+        }
         public ActionResult Login()
         {
             ViewBag.Message = "Your Login page.";
