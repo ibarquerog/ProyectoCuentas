@@ -1,0 +1,136 @@
+﻿@model IndexViewModel
+
+<div class="container">
+
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Clientes", "Clientes", "Home")</li>
+            <li>@Html.ActionLink("Cuentas", "Cuentas", "Home")</li>
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+</div>
+<h2>Clientes</h2>
+
+
+
+@using (Html.BeginForm("guardarCliente", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Insertar Cliente</h4>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <!--Nombre Cliente-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <!--ID Cliente-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <!--Contrasena-->
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contrasena, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contrasena, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoCuenta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TipoCuenta, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@using (Html.BeginForm("editarCliente", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Editar Cliente</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!--ID Cliente-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IDE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <!--Nombre Cliente-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <!--Contrasena-->
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContrasenaE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ContrasenaE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+@using (Html.BeginForm("eliminarCliente", "Home", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <h4>Eliminar Cliente</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.idEliminarUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.idEliminarUsuario, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Eliminar" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+
+

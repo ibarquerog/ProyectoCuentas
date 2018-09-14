@@ -1,0 +1,137 @@
+﻿@using System.Data.SqlClient;
+@using System.Configuration;
+@using System.Data;
+
+@model Cuentas
+@{
+    ViewBag.Title = "Cuentas";
+}
+
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Clientes", "Clientes", "Home")</li>
+        <li>@Html.ActionLink("Cuentas", "Cuentas", "Home")</li>
+    </ul>
+    @Html.Partial("_LoginPartial")
+</div>
+
+
+<h2>Cuentas</h2>
+
+<div class="form-horizontal">
+    <h4>Crear Cuenta</h4>
+    <hr />
+    @using (Html.BeginForm("crearCuenta", "Home", FormMethod.Post))
+    {
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoCuenta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TipoCuenta, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    }
+</div>
+
+<div class="form-horizontal">
+    <h4>Editar Cuentas</h4>
+    <hr />
+    @using (Html.BeginForm("editarCuenta", "Home", FormMethod.Post))
+    {
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdCuentaE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdCuentaE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoCuentaE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TipoCuentaE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    }
+</div>
+
+
+    <div class="form-horizontal">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>DocIdCliente</th>
+                    <th>TipoCuenta</th>
+                    <th>Saldo</th>
+                    <th>FechaCreacion</th>
+                    <th>InteresesAcumulados</th>
+                    <th>Código Cuenta</th>
+                    <th>Activo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    SqlDataAdapter da;
+                    DataSet ds = new DataSet();
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = "data source=DESKTOP-2OQBEMO;initial catalog=BD_Cuentas;integrated security=True;MultipleActiveResultSets=True;";
+                    SqlCommand cmd = new SqlCommand("retornarCuentas", con);
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    if (!object.Equals(ds.Tables[0], null))
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                            {
+                                <tr>
+                                    <th scope="row">@ds.Tables[0].Rows[i]["ID"]</th>
+                                    <td>@ds.Tables[0].Rows[i]["DocIdCliente"]</td>
+                                    <td>@ds.Tables[0].Rows[i]["TipoCuenta"]</td>
+                                    <td>@ds.Tables[0].Rows[i]["Saldo"]</td>
+                                    <td>@ds.Tables[0].Rows[i]["FechaCreacion"]</td>
+                                    <td>@ds.Tables[0].Rows[i]["InteresesAcumulados"]</td>
+                                    <td>@ds.Tables[0].Rows[i]["CodigoCuenta"]</td>
+                                    <td>@ds.Tables[0].Rows[i]["Activo"]</td>
+                                </tr>
+                            }
+
+
+                        }
+                    }
+                }
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+                    
+
