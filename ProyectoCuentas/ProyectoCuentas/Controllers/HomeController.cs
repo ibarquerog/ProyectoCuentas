@@ -9,12 +9,14 @@ using System.Configuration;
 using System.Data;
 using System.Text;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace ProyectoCuentas.Controllers
 {
     public class HomeController : Controller
     {
         public string Admin = "";
+
         public ActionResult Index()
         {
             return View();
@@ -52,6 +54,7 @@ namespace ProyectoCuentas.Controllers
             cmd.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = 2;
             cmd.Parameters.Add("@Nombre", System.Data.SqlDbType.VarChar, 50).Value = model.NombreE.ToString();
             cmd.Parameters.Add("@ValorDocId", System.Data.SqlDbType.Int).Value = int.Parse(model.IDE);
+            cmd.Parameters.Add("@Admin", System.Data.SqlDbType.VarChar, 50).Value = "Admin2";
             cmd.Parameters.Add("@Contrasena", System.Data.SqlDbType.VarChar, 50).Value = model.ContrasenaE.ToString();
             try
             {
@@ -83,6 +86,7 @@ namespace ProyectoCuentas.Controllers
             cmd.Parameters.Add("@Nombre", System.Data.SqlDbType.VarChar, 50).Value = model.Nombre.ToString();
             cmd.Parameters.Add("@ValorDocId", System.Data.SqlDbType.Int).Value = int.Parse(model.ID);
             cmd.Parameters.Add("@Contrasena", System.Data.SqlDbType.VarChar, 50).Value = model.Contrasena.ToString();
+            cmd.Parameters.Add("@Admin", System.Data.SqlDbType.VarChar, 50).Value = "admin1";
             SqlCommand cmd2 = new SqlCommand("spInsertarCuentas", conexion);
             cmd2.CommandType = CommandType.StoredProcedure;
             cmd2.Parameters.Add("@docIdCliente", System.Data.SqlDbType.VarChar, 50).Value = model.ID;
@@ -92,6 +96,7 @@ namespace ProyectoCuentas.Controllers
             cmd2.Parameters.Add("@InteresesAcumulados", System.Data.SqlDbType.Money).Value = 0.0;
             cmd2.Parameters.Add("@CodigoCuenta", System.Data.SqlDbType.VarChar,50).Value = generarCodigoCuenta();
             cmd2.Parameters.Add("@Activo", System.Data.SqlDbType.Bit).Value = 1;
+            cmd2.Parameters.Add("@Admin", System.Data.SqlDbType.VarChar, 50).Value = "admin1";
 
 
             try
@@ -149,7 +154,8 @@ namespace ProyectoCuentas.Controllers
             SqlCommand cmd = new SqlCommand("spModificarCuentas", conexion);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = model.IdCuentaE;
-            cmd.Parameters.Add("@TipoCuenta", System.Data.SqlDbType.Money).Value = int.Parse(model.TipoCuentaE);
+            cmd.Parameters.Add("@TipoCuenta", System.Data.SqlDbType.Int).Value = int.Parse(model.TipoCuentaE);
+            cmd.Parameters.Add("@Admin", System.Data.SqlDbType.VarChar, 50).Value = "admin1";
 
             try
             {
@@ -175,6 +181,7 @@ namespace ProyectoCuentas.Controllers
         {
             SqlConnection conexion = new SqlConnection("data source=DESKTOP-2OQBEMO;initial catalog=BD_Cuentas;integrated security=True;MultipleActiveResultSets=True;");
             SqlCommand cmd = new SqlCommand("spEliminarCliente", conexion);
+            cmd.Parameters.Add("@Admin", System.Data.SqlDbType.VarChar, 50).Value = "admin1";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = int.Parse(model.idEliminarUsuario);
             try
@@ -218,6 +225,7 @@ namespace ProyectoCuentas.Controllers
             cmd.Parameters.Add("@InteresesAcumulados", System.Data.SqlDbType.Money).Value = 0.0;
             cmd.Parameters.Add("@CodigoCuenta", System.Data.SqlDbType.VarChar, 50).Value = generarCodigoCuenta();
             cmd.Parameters.Add("@Activo", System.Data.SqlDbType.Bit).Value = 1;
+            cmd.Parameters.Add("@Admin", System.Data.SqlDbType.VarChar, 50).Value = "admin1";
             try
             {
                 conexion.Open();
