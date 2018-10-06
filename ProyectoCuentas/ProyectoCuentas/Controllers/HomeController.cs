@@ -16,7 +16,6 @@ namespace ProyectoCuentas.Controllers
     public class HomeController : Controller
     {
         public string Admin = "";
-
         public ActionResult Index()
         {
             return View();
@@ -136,7 +135,7 @@ namespace ProyectoCuentas.Controllers
         {
             ViewBag.Message = "Your Login page.";
 
-            return View();
+            return View("Login");
         }
         public ActionResult Clientes()
         {
